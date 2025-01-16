@@ -1,0 +1,172 @@
+html {
+  scroll-behavior: smooth;
+}
+/* General container styling */
+.reels-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  display: flex;
+  flex-direction: column;
+  background-color: #000000;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+/* Individual reel styling */
+.reel {
+  height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  position: relative;
+}
+
+.reel-video {
+  /* height: 100vh;
+
+  object-fit: contain;
+  box-shadow: 0px 7px 10px #ffffff; */
+  width: fit-content;
+  height: 95vh;
+  margin-top: 2.5vh;
+  margin-bottom: 2.5vh;
+  object-fit: contain;
+  box-shadow: 0px 7px 10px #ffffff;
+  border-radius: 5px;
+}
+
+/* Overlay styling (for text and buttons) */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  /* background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1)); */
+}
+
+/* Reel details styling */
+.reel-details {
+  display: flex
+  ;
+      /* align-items: center; */
+      flex-direction: column;
+}
+
+.user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 2px solid white;
+}
+
+.user-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.reel-description {
+  font-size: 1rem;
+  color: white;
+  opacity: 0.9;
+  margin-top: 10px;
+}
+
+/* Volume toggle button styling */
+.volume-toggle {
+  align-self: flex-end;
+  background: rgba(255, 255, 255, 0.8);
+  color: black;
+  border: none;
+  border-radius: 50%;
+  padding: 15px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+}
+
+.volume-toggle:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+/* @media (max-width: 768px) { */
+  @media (max-width: 800px) {
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .user-name {
+    font-size: 1rem;
+  }
+
+  .reel-description {
+    font-size: 0.9rem;
+  }
+
+  .volume-toggle {
+    padding: 10px;
+    font-size: 1rem;
+  }
+  .dropdown-menu{
+    inset: 0px 180px auto auto !important;
+
+  }
+}
+@media (max-width: 432px) {
+  .reels-container {
+    background-color: black !important;
+  }
+  .reel {
+    background-color: black;
+  }
+  .reel-video {
+    height: 100vh;
+    width: 100%;
+    object-fit: contain;
+
+    box-shadow: 0px 52px 116px #545454;
+  }
+  .overlay {
+    position: absolute;
+    top: 75%;
+    bottom: 30%;
+    left: 0;
+    width: 100%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+ 
+}
+
+@media (min-width: 432px) {
+  .reel {
+    height: 100vh;
+    width: 100%;
+    scroll-snap-align: start;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* box-shadow: 10px 10px 10px red; */
+  }
+  .reel-video {
+    box-shadow: 0px 27px 61px #454545;
+  }
+}
