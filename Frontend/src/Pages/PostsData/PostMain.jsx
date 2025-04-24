@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./Posts.css";
+import metavisionlogo from "../Home/images/metavisionlogo.jpg";
 
 function PostMain() {
   const HandleMessagesButton = () => {
@@ -102,6 +103,17 @@ function PostMain() {
     GetPosts();
   }, []);
 
+  //   const spinAnimation = `
+  // @keyframes spin {
+  //   0% {
+  //     transform: rotate(0deg);
+  //   }
+  //   100% {
+  //     transform: rotate(360deg);
+  //   }
+  // }
+  // `;
+
   return (
     <div className="App">
       <div className="instagram-clone">
@@ -116,7 +128,7 @@ function PostMain() {
                 <div
                   key={user._id}
                   className="user-items"
-                  onClick={() => onUserClick(user)}
+                  // onClick={() => onUserClick(user)}
                 >
                   <div className="story">
                     <img
@@ -128,8 +140,22 @@ function PostMain() {
                   </div>
                 </div>
               ))
-            ) : (
-              <p>Loading users...</p>
+            ) :
+             (
+              // <p>Loading users...</p>
+              <div className="logoimg">
+                <img
+                  style={{
+                    position: "absolute",
+                    width: "100px",
+                    top: "50%",
+                    left: "50%",
+                    borderRadius: "50%",
+                  }}
+                  src={metavisionlogo}
+                  alt=""
+                />
+              </div>
             )}
           </div>
           {/* posts */}
@@ -172,10 +198,8 @@ function PostMain() {
             {/* Suggestions */}
             <aside className="suggestions">
               <div className="profile-switch">
-                <p>
-                  <strong>Vansh Chaudhary</strong>
-                </p>
-                <button>Switch</button>
+                <p>{/* <strong>Vansh Chaudhary</strong> */}</p>
+                {/* <button>Switch</button> */}
               </div>
               <h6>Suggested for you</h6>
 
@@ -185,7 +209,7 @@ function PostMain() {
                     <div
                       key={user._id}
                       className="user-item"
-                      onClick={() => onUserClick(user)}
+                      // onClick={() => onUserClick(user)}
                     >
                       <img
                         src={user.profilePic}
@@ -198,7 +222,7 @@ function PostMain() {
                     </div>
                   ))
                 ) : (
-                  <p>Loading users...</p>
+                  <p></p>
                 )}
 
                 {/* <button>Follow</button> */}

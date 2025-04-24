@@ -1,8 +1,7 @@
-
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import './Aditionalcss.css'
-import '../PostsData/Posts.css'
+import "./Aditionalcss.css";
+import "../PostsData/Posts.css";
 // Import CSS for transitions
 
 function SearchRoute({ value }) {
@@ -42,7 +41,10 @@ function SearchRoute({ value }) {
   // Hide SearchMain on clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (searchMainRef.current && !searchMainRef.current.contains(event.target)) {
+      if (
+        searchMainRef.current &&
+        !searchMainRef.current.contains(event.target)
+      ) {
         setIsVisible(false);
         setTimeout(() => setIsMounted(false), 300); // Close smoothly
       }

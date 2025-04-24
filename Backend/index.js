@@ -18,6 +18,7 @@ import status from "express-status-monitor";
 import ReelRouter from './ReelPostThings/ReelRouter.js';
 import ExplorerRouter from './authRouter/ExplorerRouter.js';
 import userDetailsController from './Controllers/userDetailsController.js';
+import UserProfileController from "./Controllers/UserProfile/UserProfileController.js"
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -54,6 +55,7 @@ app.use("/upload", express.static("upload"));
 app.use("/Reels", express.static("Reels"));
 app.use("/api/explore", ExplorerRouter);
 app.use('/you',userDetailsController)
+app.use('/api/profile', UserProfileController)
 
 
 // io.on("connection", (socket) => {

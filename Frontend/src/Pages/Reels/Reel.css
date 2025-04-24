@@ -26,7 +26,8 @@ html {
 
   object-fit: contain;
   box-shadow: 0px 7px 10px #ffffff; */
-  width: fit-content;
+  /* width: fit-content; */
+  aspect-ratio: 7.03 / 12.5;
   height: 95vh;
   margin-top: 2.5vh;
   margin-bottom: 2.5vh;
@@ -51,10 +52,9 @@ html {
 
 /* Reel details styling */
 .reel-details {
-  display: flex
-  ;
-      /* align-items: center; */
-      flex-direction: column;
+  display: flex;
+  /* align-items: center; */
+  flex-direction: column;
 }
 
 .user-avatar {
@@ -68,8 +68,9 @@ html {
 .user-name {
   font-size: 1.2rem;
   font-weight: bold;
-  color: white;
+  /* color: white; */
   margin-bottom: 5px;
+  color: #656565 !important;
 }
 
 .reel-description {
@@ -82,8 +83,8 @@ html {
 /* Volume toggle button styling */
 .volume-toggle {
   align-self: flex-end;
-  background: rgba(255, 255, 255, 0.8);
-  color: black;
+  background: transparent;
+  color: #828282;
   border: none;
   border-radius: 50%;
   padding: 15px;
@@ -93,25 +94,26 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
+  width: 60px;
   height: 40px;
 }
 
 .volume-toggle:hover {
-  background: rgba(255, 255, 255, 1);
   transform: scale(1.1);
 }
 
 /* Responsive adjustments */
 /* @media (max-width: 768px) { */
-  @media (max-width: 800px) {
+@media (max-width: 800px) {
   .user-avatar {
     width: 40px;
     height: 40px;
+    margin-right: 5px !important;
   }
 
   .user-name {
     font-size: 1rem;
+    font-weight: 100;
   }
 
   .reel-description {
@@ -121,13 +123,14 @@ html {
   .volume-toggle {
     padding: 10px;
     font-size: 1rem;
+    width: 40px !important;
   }
-  .dropdown-menu{
+  .dropdown-menu {
     inset: 0px 180px auto auto !important;
-
   }
 }
 @media (max-width: 432px) {
+  /* @media (max-width: 1000px) { */
   .reels-container {
     background-color: black !important;
   }
@@ -139,20 +142,20 @@ html {
     width: 100%;
     object-fit: contain;
 
-    box-shadow: 0px 52px 116px #545454;
+    box-shadow: none;
   }
   .overlay {
     position: absolute;
-    top: 75%;
-    bottom: 30%;
+    /* top: 75%; */
+    bottom: 0%;
     left: 0;
     width: 100%;
-    height: 25%;
-    display: flex;
+    /* height: 25%; */
+    display: flex
+;
     flex-direction: column;
     padding: 20px;
   }
- 
 }
 
 @media (min-width: 432px) {
@@ -169,4 +172,31 @@ html {
   .reel-video {
     box-shadow: 0px 27px 61px #454545;
   }
+}
+
+.reel-description {
+  width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit text to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-wrap: break-word;
+  line-height: 1.4em;
+  font-size: 14px;
+  color: white;
+}
+
+.expanded {
+  -webkit-line-clamp: unset;
+  overflow: visible;
+  white-space: normal;
+}
+
+.volume-toggle:hover {
+  background-color: transparent !important;
+}
+.show-more-btn{
+  color: #828282 !important;
 }

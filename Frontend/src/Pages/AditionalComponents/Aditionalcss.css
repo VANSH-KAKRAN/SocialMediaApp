@@ -40,13 +40,13 @@
 }
 .image {
   background-color: #4f4f4f;
-  width: 125px;
+  width: 90px;
   padding: 20px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 125px;
+  height: 90px;
 }
 .image svg {
   color: white !important;
@@ -68,7 +68,7 @@
   flex-direction: column;
   gap: 50px;
   padding: 20px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 .UserInfo {
   display: flex;
@@ -99,15 +99,18 @@
 }
 .LowerProfile {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   border-top: 1px solid #838383;
   width: 80%;
-  gap: 50px;
+  /* gap: 50px; */
   justify-content: space-evenly;
   padding-top: 20px;
   text-align: center;
   justify-content: center;
   align-items: center;
+}
+.LowerProfile h2 {
+  font-size: 1.3rem;
 }
 svg {
   margin-right: 0;
@@ -269,20 +272,74 @@ svg {
   visibility: visible;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
-.LowerProfile svg{
+.LowerProfile svg {
   margin-right: 16px !important;
 }
 
 @media (max-width: 768px) {
-  .Profile{
+  .Profile {
     /* flex-direction: column; */
     gap: 10px;
   }
-  .LowerProfile{
+  .LowerProfile {
     font-size: small;
   }
-  .LowerProfile svg{
-    margin-right: 0 !important;
-    margin-bottom: 10px !important;
+  .LowerProfile svg {
+    margin-right: 10px !important;
+    margin-bottom: 0px !important;
+    width: 17px;
   }
+  .line1 li {
+    font-size: large;
+  }
+  .UserInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .line1 button {
+    font-size: small;
+  }
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1px;
+  padding: 20px;
+}
+
+.contentCard {
+  /* border-radius: 10px;
+  text-align: center;
+  border: 1px solid #bebebe; */
+  text-align: center;
+  border: 1px solid #bebebe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contentImage,
+.contentVideo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  /* height: auto; */
+  /* border-radius: 8px; */
+  object-fit: cover;
+}
+
+/* h2 {
+  color: white;
+  text-align: center;
+} */
+
+@media screen and (max-width: 620px) {
+  .contentGrid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+}
+.pst {
+  display: flex;
+  gap: 12vw;
 }

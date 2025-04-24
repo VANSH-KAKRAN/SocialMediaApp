@@ -17,7 +17,8 @@ const ChatWindow = ({ user }) => {
 
   // const [ReceaveMessage, setReceaveMesssage] = useState([]);
   // useEffect(() => {
-  const HandleMessageSending = async () => {
+  const HandleMessageSending = async (e) => {
+e.preventDefault();
     try {
       console.log("length", message.length);
       if (message.length === 0) {
@@ -76,17 +77,19 @@ const ChatWindow = ({ user }) => {
         //   fetchMessages();
         // }
       } catch (error) {
-        console.error("Error fetching messages:", error.message);
+        // console.error("Error fetching messages:", error.message);
       }
     };
-    // setInterval(() => {
-    //   fetchMessages();
-    // }, 100);
+
 
     if (user) {
-      fetchMessages();
+      handleRestoreData();
+
+      // alert("messages has been featched successfully")
     }
   }, [user]);
+  console.log("Message timestamp:", message.timestamp);
+
 
   return (
     <div className="chat-window">
@@ -107,7 +110,7 @@ const ChatWindow = ({ user }) => {
       </div>
       {/* <h2>Chat with {user.fullname}</h2> */}
 
-      <div className="chat-messages" id="chatmessage">
+      {/* <div className="chat-messages" id="chatmessage">
         {messages?.length > 0 ? (
           messages?.map((message) => (
             <div
@@ -118,7 +121,7 @@ const ChatWindow = ({ user }) => {
             >
               <p>{message.message}</p>
 
-              <small>{new Date(message.timestamp).toLocaleTimeString()}</small>
+              <small>{new Date().toLocaleString()}</small>
             </div>
           ))
         ) : (
@@ -126,8 +129,30 @@ const ChatWindow = ({ user }) => {
             No messages yet.
           </p>
         )}
+      </div> */}
+      <div className="chat-messages" id="chatmessage">
+  {messages?.length > 0 ? (
+    messages.map((message) => (
+      <div
+        key={message._id}
+        className={`message ${
+          message.senderId === user._id ? "incoming" : "outgoing"
+        }`}
+      >
+        <p>{message.message}</p>
+        <small>
+          {message.timestamp
+            ? new Date(message.timestamp).toLocaleTimeString()
+            : "Time not available"}
+        </small>
       </div>
-      <div className="message-input-container">
+    ))
+  ) : (
+    <p className="nomessageyet">No messages yet.</p>
+  )}
+</div>
+
+      {/* <div className="message-input-container">
         <FaPaperclip className="icon" />
         <input
           type="text"
@@ -143,7 +168,24 @@ const ChatWindow = ({ user }) => {
             onClick={HandleMessageSending}
           />
         </p>
-      </div>
+      </div> */}
+            <form className="message-input-container" onSubmit={HandleMessageSending}>
+        <FaPaperclip style={{marginLeft:"7px"}} className="icon" />
+        <input
+          type="text"
+          placeholder="Type a message"
+          className="message-input"
+          value={message}
+          onChange={(e) => setmessage(e.target.value)}
+        />
+        <button type="submit" onClick={P}>
+          <AiOutlineSend
+            className="icon"
+            type="submit"
+            // onClick={HandleMessageSending}
+          />
+        </button>
+      </form>
     </div>
   );
 };

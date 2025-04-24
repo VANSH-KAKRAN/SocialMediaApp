@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import { Link } from "react-router-dom";
 import "../PostsData/Posts.css";
@@ -6,9 +6,27 @@ import axios from "axios";
 import SearchRoute from "../AditionalComponents/SearchRoute.jsx";
 import CreatePost from "../AditionalComponents/CreatePost.jsx";
 import PostReel from "../AditionalComponents/PostReel.jsx";
-import metavisionlogo from '../Home/images/metavisionlogo.jpg';
+import metavisionlogo from "../Home/images/metavisionlogo.jpg";
 
-function AsideRoutes() {
+function AsideRoutes({toggleCss }) {
+  const [open, setOpen] = useState(false);
+
+  const menuRef = useRef(null); // Reference for the menu div
+
+  // Close dropup when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const [search, setsearch] = useState(false);
   const [value, setvalue] = useState(false);
   const [post, setpost] = useState(false);
@@ -33,9 +51,6 @@ function AsideRoutes() {
       .then((res) => {
         console.log(res);
         localStorage.removeItem("Chat-authUser");
-
-        // Remove the cookie by setting it to expire in the past
-        // document.cookie = "jwt; expires=Thu,  path=/http://localhost:5173; ";
         alert("cookie", document.cookie);
 
         window.location.href = "/login";
@@ -46,17 +61,12 @@ function AsideRoutes() {
     <div className="leftSide">
       <aside className="sidebar" id="SideBatHideShow">
         <h1 className="logo">
-          {/* <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="30"
-            height="30"
-            fill="currentColor"
+          <img
+            style={{ width: "30px", height: "30px", borderRadius: "50px" }}
             className="bi bi-instagram"
-            viewBox="0 0 16 16"
-          >
-            <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
-          </svg> */}
-          <img style={{width:"30px" , height:"30px", borderRadius:"50px"}} className="bi bi-instagram" src={metavisionlogo} alt="" />
+            src={metavisionlogo}
+            alt=""
+          />
           <span className="NavHiddenText InstagramLogo h1">MetaVision</span>
         </h1>
         <nav className="menu">
@@ -184,37 +194,123 @@ function AsideRoutes() {
 
           <ul className="dropdown-menu">
             <li>
-              <Link className="dropdown-item" to="/createpost" onClick={HandleShowPost}>
-                Create Post
+              <Link
+                className="dropdown-item"
+                to="/createpost"
+                onClick={HandleShowPost}
+              >
+                Create Post{" "}
+                <svg
+                  style={{ marginLeft: "5px" }}
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-images"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
+                  <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z" />
+                </svg>
               </Link>
             </li>
             <li>
-              <Link className="dropdown-item" to="/reatereel" onClick={HandleShowReel}>
-                Create Reel
+              <Link
+                className="dropdown-item"
+                to="/reatereel"
+                onClick={HandleShowReel}
+              >
+                Create Reel{" "}
+                <svg
+                  style={{ marginLeft: "5px" }}
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-film"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm4 0v6h8V1zm8 8H4v6h8zM1 1v2h2V1zm2 3H1v2h2zM1 7v2h2V7zm2 3H1v2h2zm-2 3v2h2v-2zM15 1h-2v2h2zm-2 3v2h2V4zm2 3h-2v2h2zm-2 3v2h2v-2zm2 3h-2v2h2z" />
+                </svg>
               </Link>
             </li>
           </ul>
         </div>
 
-        <div className="HandleLogoutDiv" onClick={handleLogout}>
+        {/* <div
+          className="HandleLogoutDiv"
+          //  onClick={handleLogout}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
             height="30"
             fill="currentColor"
-            className="bi bi-box-arrow-right"
+            className="bi bi-list"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+            />
+          </svg>
+          <span className="NavHiddenText">More</span>
+        </div> */}
+
+        <div
+          ref={menuRef}
+          className="handle-logout-div HandleLogoutDiv"
+          onClick={() => setOpen(!open)}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            fill="currentColor"
+            className="bi bi-list"
             viewBox="0 0 16 16"
           >
             <path
               fillRule="evenodd"
-              d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"
-            />
-            <path
-              fillRule="evenodd"
-              d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"
+              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
             />
           </svg>
-          <span className="NavHiddenText">Logout</span>
+          <span className="nav-hidden-text NavHiddenText">More</span>
+
+          {/* Dropup Menu at the Right */}
+          {open && (
+            <div className="dropup-menu threedot">
+              <button onClick={handleLogout}>
+                Log out{" "}
+                <svg
+                  style={{ marginLeft: "5px" }}
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-door-closed-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+                </svg>
+              </button>
+              <button onClick={toggleCss}>
+                Change Mode{" "}
+                <svg
+                  style={{ marginLeft: "5px" }}
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-nintendo-switch"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M9.34 8.005c0-4.38.01-7.972.023-7.982C9.373.01 10.036 0 10.831 0c1.153 0 1.51.01 1.743.05 1.73.298 3.045 1.6 3.373 3.326.046.242.053.809.053 4.61 0 4.06.005 4.537-.123 4.976-.022.076-.048.15-.08.242a4.14 4.14 0 0 1-3.426 2.767c-.317.033-2.889.046-2.978.013-.05-.02-.053-.752-.053-7.979m4.675.269a1.62 1.62 0 0 0-1.113-1.034 1.61 1.61 0 0 0-1.938 1.073 1.9 1.9 0 0 0-.014.935 1.63 1.63 0 0 0 1.952 1.107c.51-.136.908-.504 1.11-1.028.11-.285.113-.742.003-1.053M3.71 3.317c-.208.04-.526.199-.695.348-.348.301-.52.729-.494 1.232.013.262.03.332.136.544.155.321.39.556.712.715.222.11.278.123.567.133.261.01.354 0 .53-.06.719-.242 1.153-.94 1.03-1.656-.142-.852-.95-1.422-1.786-1.256" />
+                  <path d="M3.425.053a4.14 4.14 0 0 0-3.28 3.015C0 3.628-.01 3.956.005 8.3c.01 3.99.014 4.082.08 4.39.368 1.66 1.548 2.844 3.224 3.235.22.05.497.06 2.29.07 1.856.012 2.048.009 2.097-.04.05-.05.053-.69.053-7.94 0-5.374-.01-7.906-.033-7.952-.033-.06-.09-.063-2.03-.06-1.578.004-2.052.014-2.26.05Zm3 14.665-1.35-.016c-1.242-.013-1.375-.02-1.623-.083a2.81 2.81 0 0 1-2.08-2.167c-.074-.335-.074-8.579-.004-8.907a2.85 2.85 0 0 1 1.716-2.05c.438-.176.64-.196 2.058-.2l1.282-.003v13.426Z" />
+                </svg>
+              </button>
+            </div>
+          )}
         </div>
       </aside>
       <SearchRoute value={value} />

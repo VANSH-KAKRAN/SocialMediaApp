@@ -1,0 +1,129 @@
+.css-enabled body {
+  background-color: #121212;
+  color: white;
+}
+
+/* Normal styles */
+
+html {
+  background-color: white;
+}
+
+.instagram-clone {
+  background-color: white !important;
+}
+.story p {
+  color: black !important;
+}
+.post-message {
+  color: black !important;
+  border: none !important;
+}
+.post-header {
+  color: black !important;
+  background-color: white !important;
+}
+.user-info p {
+  color: black !important;
+}
+.post {
+  background-color: white !important;
+}
+
+/* sidebar */
+
+.sidebar .logo {
+  color: black !important;
+}
+.menu ul a {
+  color: black !important;
+}
+.menu ul a :hover {
+  /* background-color: #d2d2d2 !important; */
+}
+span:hover{
+  background-color: transparent !important;
+}
+.menu ul div {
+  color: black !important;
+}
+.menu ul div:hover {
+  background-color: #d2d2d2;
+}
+.dropstart {
+  color: black !important;
+}
+.handle-logout-div {
+  color: black !important;
+}
+.sidebar {
+  background-color: white !important;
+}
+.user-item:hover {
+  background-color: rgb(229, 229, 229) !important;
+}
+
+/* search */
+
+.search-main {
+  background-color: white !important;
+}
+.search-input-container {
+  background-color: #f2f2f2;
+}
+.search-input-container input {
+  color: black !important;
+}
+.user-card {
+  background-color: rgb(223, 223, 223) !important;
+}
+
+/* explore */
+
+#media-container-top {
+  background-color: white !important;
+}
+.media-container {
+  background-color: white !important;
+}
+
+/* reels */
+
+.reels-container {
+  background-color: white !important;
+}
+.user-name {
+  color: #656565 !important;
+}
+.reel-description {
+  color: rgb(125, 125, 125) !important;
+}
+
+/* chat */
+
+.chat-list {
+  background-color: white !important;
+  border: 0;
+}
+.chat-container {
+  border-radius: 0% !important;
+}
+.empty-message {
+  opacity: 1 !important;
+}
+.chat-window {
+  background: white;
+  border-radius: 0;
+}
+
+/* profile */
+
+.Profile {
+  background-color: white !important;
+  color: black;
+}
+.plus {
+  background-color: white;
+}
+
+/* leftside */
